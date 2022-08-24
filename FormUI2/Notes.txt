@@ -1,0 +1,4 @@
+﻿This project is supposed to get me accustomed with the usage of the database.
+Biggest difficulty: non-programming related troubleshooting i.e. .NET framework
+version updates, program template (.NET framework instead of default), 
+SQL Server configurations etc.
