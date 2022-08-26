@@ -1,4 +1,18 @@
-﻿This project is supposed to get me accustomed with the usage of the database.
+﻿Based on tutorial:
+https://www.youtube.com/watch?v=Et2khGnrIqc
+
+I've created my own database and provided its stored procedures based on those
+from the database in the video.
+
+This project is supposed to get me accustomed with the usage of the database.
 Biggest difficulty: non-programming related troubleshooting i.e. .NET framework
 version updates, program template (.NET framework instead of default), 
 SQL Server configurations etc.
+
+
+Ready solution with the database available in the SQLDataAccessDemos.zip file.
+
+Suggestions for the future:
+- add to stored procedures clause that makes search easier by adding a wildcard
+- make keystroke 'enter' execute search, not insert however to not provide 
+an opportunity for mistakes

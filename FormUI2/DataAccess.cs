@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Dapper;
 
 namespace FormUI2
@@ -14,11 +15,18 @@ namespace FormUI2
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("Test_Sample"))) //using means calling code with a connection - afterwhich the connection is destroyed
             {
-                var output = connection.Query<Person>($"select * from dbo.Person where LastName = '{ lastName }'").ToList();
+                var output = connection.Query<Person>("People_GetByLastName @LastName", new { LastName = lastName }).ToList(); //string contains stored procedure and attribute name
                 return output;
-                //https://youtu.be/Et2khGnrIqc?t=3132
-                //TODO restore BAK file to see the stored procedures and replicate them in my database
-                //C:\Users\Andrzej\Downloads\SQLDataAccessDemos
+            }
+        }
+
+        internal void InsertPerson(string firstName, string lastName, string emailAddress, string phoneNumber)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("Test_Sample")))
+            {
+                List<Person> people = new List<Person>();
+                people.Add(new Person { FirstName = firstName, LastName = lastName, EmailAddress = emailAddress, PhoneNumber=phoneNumber });
+                connection.Execute("dbo.People_Insert @FirstName, @LastName, @EmailAddress, @PhoneNumber", people);
             }
         }
     }
